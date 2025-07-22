@@ -15,17 +15,7 @@ BEGIN
 
     SET @NewUserID = SCOPE_IDENTITY();
 END
--------------------------------------
-DECLARE @NewUserID INT;
 
-EXEC SP_AddNewUser
-    @PersonID = 5,
-    @Username = 'Aloosh',
-    @Password = 'uu@per',
-    @NewUserID = @NewUserID OUTPUT;
-
--- Check the new person ID
-SELECT @NewUserID AS NewUserID;
 
 --------------------------------------------------------------------------------------------- SP_GetAllUsers
 
@@ -34,8 +24,6 @@ AS
 BEGIN
     SELECT * FROM Users
 END
--------------------------------------
-EXEC SP_GetAllUsers;
 
 --------------------------------------------------------------------------------------------- SP_GetUserByID
 
@@ -45,9 +33,7 @@ AS
 BEGIN
     SELECT * FROM Users WHERE UserID = @UserID
 END
--------------------------------------
-EXEC SP_GetUserByID 
-		@UserID = 2;
+
 
 
 --------------------------------------------------------------------------------------------- SP_UpdateUser
@@ -63,12 +49,7 @@ BEGIN
     SET PersonID = @PersonID, Username = @Username, Password = @Password
     WHERE UserID = @UserID
 END
--------------------------------------
-EXEC SP_UpdateUser
-		@UserID = 2,
-		@PersonID = 5,
-		@Username = AAAA,
-		@Password = AAAA;
+
 
 
 --------------------------------------------------------------------------------------------- SP_DeleteUser
@@ -80,9 +61,7 @@ BEGIN
 
 	RETURN @@ROWCOUNT;
 END
--------------------------------------
-EXEC SP_DeleteUser
-	@UserID = 21;
+
 
 --------------------------------------------------------------------------------------------- SP_CheckUserExists
 
@@ -95,13 +74,7 @@ BEGIN
     ELSE
         RETURN 0;  -- does not exist
 END
--------------------------------------
-DECLARE @IsExists INT;	
-EXEC @IsExists = SP_CheckUserExists @UserID = 1002;
-IF @IsExists = 1
-    PRINT 'exists.';
-ELSE
-    PRINT 'does not exist.';
+
 
 
 --------------------------------------------------------------------------------------------- SP_Login
@@ -116,12 +89,6 @@ BEGIN
     ELSE
         RETURN 0;  -- does not exist
 END
--------------------------------------
-DECLARE @IsExists INT;	
-EXEC @IsExists = SP_Login @Username = 'Aloosh', @Password = '0034989903590';
-IF @IsExists = 1
-    PRINT 'exists.';
-ELSE
-    PRINT 'does not exist.';
+
 
 

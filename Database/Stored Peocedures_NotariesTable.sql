@@ -15,17 +15,7 @@ BEGIN
 
     SET @NewNotaryID = SCOPE_IDENTITY();
 END
--------------------------------------
-DECLARE @NewNotaryID INT;
 
-EXEC SP_AddNewNotary
-    @Number = 1,
-    @GovernorateID = 1,
-    @Name = 'أحمد طالب',
-    @NewNotaryID = @NewNotaryID OUTPUT;
-
--- Check the new person ID
-SELECT @NewNotaryID AS NewNotaryID;
 
 --------------------------------------------------------------------------------------------- SP_GetAllNotaries
 
@@ -34,8 +24,7 @@ AS
 BEGIN
     SELECT * FROM Notaries
 END
--------------------------------------
-EXEC SP_GetAllNotaries;
+
 
 
 --------------------------------------------------------------------------------------------- SP_GetNotaryByID
@@ -46,9 +35,7 @@ AS
 BEGIN
     SELECT * FROM Notaries WHERE NotaryPublicID = @NotaryID
 END
--------------------------------------
-EXEC SP_GetNotaryByID 
-		@NotaryID = 1;
+
 
 --------------------------------------------------------------------------------------------- SP_GetNotaryByName
 
@@ -58,9 +45,6 @@ AS
 BEGIN
     SELECT * FROM Notaries WHERE Name = @NotaryName
 END
--------------------------------------
-EXEC SP_GetNotaryByName 
-		@NotaryName = 'أحمد طالب';
 
 
 --------------------------------------------------------------------------------------------- SP_UpdateNotary
@@ -76,12 +60,7 @@ BEGIN
     SET Number = @Number, GovernorateID = @GovernorateID, Name = @Name
     WHERE NotaryPublicID = @NotaryPublicID
 END
--------------------------------------
-EXEC SP_UpdateNotary
-		@NotaryPublicID = 1,
-		@Number = 1,
-		@GovernorateID = 1,
-		@Name = 'أحمد طالب';
+
 
 
 --------------------------------------------------------------------------------------------- SP_DeleteNotary
@@ -93,7 +72,5 @@ BEGIN
 
 	RETURN @@ROWCOUNT;
 END
--------------------------------------
-EXEC SP_DeleteNotary
-	@NotaryPublicID = 2;
+
 

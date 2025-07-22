@@ -13,15 +13,7 @@ BEGIN
 
     SET @NewRegistrationAuthorityID = SCOPE_IDENTITY();
 END
--------------------------------------
-DECLARE @ID INT;
 
-EXEC SP_AddNewRegistrationAuthority
-    @RegistrationAuthorityName = 'الأمانة المركزية',
-    @NewRegistrationAuthorityID = @ID OUTPUT;
-
--- Check the new person ID
-SELECT @ID AS NewRID;
 
 --------------------------------------------------------------------------------------------- SP_GetAllRegistrationAuthorities
 
@@ -30,8 +22,7 @@ AS
 BEGIN
     SELECT * FROM RegistrationAuthorities
 END
--------------------------------------
-EXEC SP_GetAllRegistrationAuthorities;
+
 
 
 --------------------------------------------------------------------------------------------- SP_GetRegistrationAuthorityByID
@@ -42,9 +33,7 @@ AS
 BEGIN
     SELECT * FROM RegistrationAuthorities WHERE RegistrationAuthorityID = @RegistrationAuthorityID
 END
--------------------------------------
-EXEC SP_GetRegistrationAuthorityByID 
-		@RegistrationAuthorityID = 1;
+
 
 
 --------------------------------------------------------------------------------------------- SP_GetRegistrationAuthorityByName
@@ -55,8 +44,6 @@ AS
 BEGIN
     SELECT * FROM RegistrationAuthorities WHERE RegistrationAuthorityName = @RegistrationAuthorityName
 END
--------------------------------------
-EXEC SP_GetRegistrationAuthorityByName 
-		@RegistrationAuthorityName = 'الميادين';
+
 
 

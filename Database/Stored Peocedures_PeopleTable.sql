@@ -26,28 +26,7 @@ BEGIN
 
     SET @NewPersonID = SCOPE_IDENTITY();
 END
--------------------------------------
-DECLARE @NewPersonID INT;
 
-EXEC SP_AddNewPerson
-    @NationalNumber = '12347756789',
-    @FirstName = 'علي',
-    @LastName = 'الرزج',
-    @FatherName = 'محمد',
-    @MotherName = 'عبير',
-    @BirthPlaceID = 1,
-    @DateOfBirth = '1990-01-01',
-    @RegistrationAuthorityID = 1,
-    @RegistrationRecordID = 1,
-    @Gender = 0,
-    @Adress = 'كفرسوسة',
-    @Phone = '555-1234',
-    @GrantHistory = NULL,
-    @CardNumber = NULL,
-    @NewPersonID = @NewPersonID OUTPUT;
-
--- Check the new person ID
-SELECT @NewPersonID AS NewPersonID;
 
 --------------------------------------------------------------------------------------------- SP_GetAllPeople
 
@@ -56,8 +35,6 @@ AS
 BEGIN
     SELECT * FROM People
 END
--------------------------------------
-EXEC SP_GetAllPeople;
 
 
 --------------------------------------------------------------------------------------------- SP_GetPersonByID
@@ -68,9 +45,7 @@ AS
 BEGIN
     SELECT * FROM People WHERE PersonID = @PersonID
 END
--------------------------------------
-EXEC SP_GetPersonByID 
-		@PersonID = 5;
+
 
 
 --------------------------------------------------------------------------------------------- SP_GetPersonByNationalNumber
@@ -81,9 +56,7 @@ AS
 BEGIN
     SELECT * FROM People WHERE NationalNumber = @NationalNumber
 END
--------------------------------------
-EXEC SP_GetPersonByNationalNumber 
-		@NationalNumber = 'string';
+
 
 
 --------------------------------------------------------------------------------------------- SP_UpdatePerson
@@ -112,23 +85,6 @@ BEGIN
 		Adress = @Adress, Phone = @Phone, GrantHistory = @GrantHistory, CardNumber = @CardNumber
     WHERE PersonID = @PersonID
 END
--------------------------------------
-EXEC SP_UpdatePerson
-		@PersonID = 5,
-		@NationalNumber = 111243253533,
-		@FirstName = علي,
-		@LastName = رزج,
-		@FatherName = عيد,
-		@MotherName = عبيرر,
-		@BirthPlaceID = 1,
-		@DateOfBirth = '1990-01-01',
-		@RegistrationAuthorityID = 1,
-		@RegistrationRecordID = 1,
-		@Gender = 0,
-		@Adress = null,
-		@Phone = null,
-		@GrantHistory = '1990-01-01',
-		@CardNumber = null;
 
 
 --------------------------------------------------------------------------------------------- SP_DeletePerson
@@ -141,9 +97,7 @@ BEGIN
 
 	RETURN @@ROWCOUNT;
 END
--------------------------------------
-EXEC SP_DeletePerson
-	@PersonID = 2;
+
 
 --------------------------------------------------------------------------------------------- SP_CheckPersonExists
 
@@ -156,13 +110,6 @@ BEGIN
     ELSE
         RETURN 0;  -- Person does not exist
 END
--------------------------------------
-DECLARE @IsExists INT;	
-EXEC @IsExists = SP_CheckPersonExists @PersonID = 5;
-IF @IsExists = 1
-    PRINT 'exists.';
-ELSE
-    PRINT 'does not exist.';
 
 		
 

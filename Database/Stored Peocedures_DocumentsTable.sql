@@ -15,17 +15,7 @@ BEGIN
 
     SET @NewDocumentID = SCOPE_IDENTITY();
 END
--------------------------------------
-DECLARE @NewDocumentID INT;
 
-EXEC SP_AddNewDocument
-    @DocumentTypeID = 1,
-    @Date = '1990-01-01',
-    @NotaryPublicID = 1,
-    @NewDocumentID = @NewDocumentID OUTPUT;
-
--- Check the new person ID
-SELECT @NewDocumentID AS NewDocumentID;
 
 --------------------------------------------------------------------------------------------- SP_GetAllDocuments
 
@@ -34,8 +24,6 @@ AS
 BEGIN
     SELECT * FROM Documents
 END
--------------------------------------
-EXEC SP_GetAllDocuments;
 
 
 --------------------------------------------------------------------------------------------- SP_GetDocumentByID
@@ -46,9 +34,7 @@ AS
 BEGIN
     SELECT * FROM Documents WHERE DocumentID = @DocumentID
 END
--------------------------------------
-EXEC SP_GetDocumentByID 
-		@DocumentID = 1;
+
 
 
 
@@ -61,9 +47,7 @@ BEGIN
 
 	RETURN @@ROWCOUNT;
 END
--------------------------------------
-EXEC SP_DeleteDocument
-	@DocumentID = 21;
+
 
 --------------------------------------------------------------------------------------------- SP_CheckDocumentExists
 
@@ -76,10 +60,3 @@ BEGIN
     ELSE
         RETURN 0;  -- does not exist
 END
--------------------------------------
-DECLARE @IsExists INT;	
-EXEC @IsExists = SP_CheckDocumentExists @DocumentID = 1;
-IF @IsExists = 1
-    PRINT 'exists.';
-ELSE
-    PRINT 'does not exist.';

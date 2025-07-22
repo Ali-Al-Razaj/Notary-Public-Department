@@ -15,17 +15,7 @@ BEGIN
 
     SET @NewRecordID = SCOPE_IDENTITY();
 END
--------------------------------------
-DECLARE @NewRecordID INT;
 
-EXEC SP_AddNewRecord
-    @DocumentID = 1,
-    @PersonID = 5,
-    @PersonRole = 0,
-    @NewRecordID = @NewRecordID OUTPUT;
-
--- Check the new person ID
-SELECT @NewRecordID AS NewRecordID;
 
 --------------------------------------------------------------------------------------------- SP_GetAllRecords
 
@@ -34,8 +24,7 @@ AS
 BEGIN
     SELECT * FROM DocumentPeopleRecords
 END
--------------------------------------
-EXEC SP_GetAllRecords;
+
 
 
 --------------------------------------------------------------------------------------------- SP_GetRecordByID
@@ -46,9 +35,7 @@ AS
 BEGIN
     SELECT * FROM DocumentPeopleRecords WHERE RecordID = @RecordID
 END
--------------------------------------
-EXEC SP_GetRecordByID 
-		@RecordID = 12;
+
 
 
 
@@ -61,7 +48,5 @@ BEGIN
 
 	RETURN @@ROWCOUNT;
 END
--------------------------------------
-EXEC SP_DeleteRecord
-	@RecordID = 21;
+
 

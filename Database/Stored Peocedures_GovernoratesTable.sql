@@ -9,8 +9,7 @@ AS
 BEGIN
     SELECT * FROM Governorates
 END
--------------------------------------
-EXEC SP_GetAllGovernorates;
+
 
 
 --------------------------------------------------------------------------------------------- SP_GetGovernorateByID
@@ -21,9 +20,7 @@ AS
 BEGIN
     SELECT * FROM Governorates WHERE GovernorateID = @GovernorateID
 END
--------------------------------------
-EXEC SP_GetGovernorateByID 
-		@GovernorateID = 1;
+
 
 
 --------------------------------------------------------------------------------------------- SP_GetGovernorateByName
@@ -34,8 +31,6 @@ AS
 BEGIN
     SELECT * FROM Governorates WHERE GovernorateName = @GovernorateName
 END
--------------------------------------
-EXEC SP_GetGovernorateByName 
-		@GovernorateName = 'دمشق';
+
 
 
