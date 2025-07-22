@@ -43,8 +43,3 @@ This project is a comprehensive solution for managing documents, people records,
 
 - Supports standard CRUD operations.
 
-
-## Testing
-- The ConsoleAppForTesting project allows manual testing of business logic and data access layers.
-
-- It references both Business Logic and Data Access layers to simulate real use cases.
